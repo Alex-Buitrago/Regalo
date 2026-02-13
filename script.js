@@ -1,3 +1,38 @@
+// CONFIGURA AQUÍ TU FECHA (Año, Mes - 1, Día, Hora, Minuto)
+// Nota: Los meses en JS empiezan en 0 (0=Enero, 1=Febrero...)
+const fechaApertura = new Date(2026, 1, 14, 18, 30, 0); // Ejemplo: 14 de Feb 2026 a las 00:00
+
+function actualizarReloj() {
+    const ahora = new Date();
+    const tiempoRestante = fechaApertura - ahora;
+
+    const capaEspera = document.getElementById('espera');
+    const capaRegalo = document.getElementById('contenido-regalo');
+    const contador = document.getElementById('contador');
+
+    if (tiempoRestante <= 0) {
+        // YA ES LA HORA: Mostrar regalo y ocultar espera
+        capaEspera.style.display = 'none';
+        capaRegalo.style.display = 'block';
+    } else {
+        // AÚN FALTA: Mostrar espera y calcular tiempo
+        capaEspera.style.display = 'block';
+        capaRegalo.style.display = 'none';
+
+        const dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((tiempoRestante / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((tiempoRestante / 1000 / 60) % 60);
+        const segundos = Math.floor((tiempoRestante / 1000) % 60);
+
+        contador.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+        setTimeout(actualizarReloj, 1000);
+    }
+}
+
+// Ejecutar al cargar la página
+window.onload = actualizarReloj;
+
+
 // Game state
 const gameState = {
     isPlaying: false,
