@@ -3,179 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💛 Mi Amor Eterno 💜</title>
+    <title>❤️ Mi Amor Eterno 💜</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilos rápidos para la pantalla de espera */
-        #bloqueo-temporal {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
-            color: #7b1fa2;
-            text-align: center;
-            font-family: 'Arial', sans-serif;
-            padding: 20px;
-        }
-        .reloj {
-            font-size: 2.5rem;
-            margin-top: 20px;
-            color: #d81b60;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
-
-    <div id="bloqueo-temporal">
-        <h1>¡Hola, mi amor! 🎁</h1>
-        <p>Aún es muy pronto para tu sorpresa. Este regalo se activará en:</p>
-        <div id="reloj-contador" class="reloj">Cargando...</div>
-        <div style="font-size: 4rem; margin-top: 20px;">🔒💜</div>
-    </div>
-
-    <div id="contenido-protegido" style="display: none;">
-        <div class="game-container">
-            <div id="start-screen" class="screen active">
-                <div class="title-container">
-                    <h1 class="game-title">
-                        <span class="heart">❤️</span>
-                        Aventura de Amor
-                        <span class="heart">💜</span>
-                    </h1>
-                    <p class="subtitle">Una aventura especial para ti, mi amor</p>
-                    <button id="start-button" class="game-button">
-                        ¡Comenzar la Aventura! ❤️
-                    </button>
-                </div>
-                <div class="instructions">
-                    <p>🎮 Usa las flechas ← → para moverte</p>
-                    <p>🦘 Presiona ESPACIO para saltar</p>
-                    <p>🍕 Recoge todas las pizzas</p>
-                    <p>⚠️ Evita las sombras oscuras</p>
-                </div>
+    <div class="game-container">
+        <!-- Pantalla de inicio -->
+        <div id="start-screen" class="screen active">
+            <div class="title-container">
+                <h1 class="game-title">
+                    <span class="heart">❤️</span>
+                    Aventura de Amor
+                    <span class="heart">💜</span>
+                </h1>
+                <p class="subtitle">Una aventura especial para ti, mi amor</p>
+                <button id="start-button" class="game-button">
+                    ¡Comenzar la Aventura! ❤️
+                </button>
             </div>
+            <div class="instructions">
+                <p>🎮 Usa las flechas ← → para moverte</p>
+                <p>🦘 Presiona ESPACIO para saltar</p>
+                <p>🍕 Recoge todas las pizzas</p>
+                <p>⚠️ Evita las sombras oscuras</p>
+            </div>
+        </div>
 
-            <div id="game-screen" class="screen">
-                <div class="game-header">
-                    <div class="score-container">
-                        <span class="label">Pizzas:</span>
-                        <span id="score">0</span>
-                        <span class="pizza-icon">🍕</span>
-                    </div>
-                    <div class="level-container">
-                        <span class="label">Nivel:</span>
-                        <span id="current-level">1</span>
-                        <span>/5</span>
-                    </div>
-                    <div class="lives-container">
-                        <span class="label">Vidas:</span>
-                        <div id="lives">
-                            <span class="heart-life">💜</span>
-                            <span class="heart-life">💜</span>
-                            <span class="heart-life">💜</span>
-                        </div>
-                    </div>
+        <!-- Pantalla de juego -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="score-container">
+                    <span class="label">Pizzas:</span>
+                    <span id="score">0</span>
+                    <span class="pizza-icon">🍕</span>
                 </div>
-                
-                <canvas id="game-canvas"></canvas>
-                
-                <div id="level-complete-modal" class="level-modal">
-                    <div class="level-modal-content">
-                        <div class="modal-characters">
-                            <span class="modal-dogday">🐶</span>
-                            <span class="modal-heart">❤️</span>
-                            <span class="modal-catnap">🐱</span>
-                        </div>
-                        <h2 class="modal-title">¡Lo Lograste!</h2>
-                        <p class="modal-message" id="level-message"></p>
-                        <button id="next-level-btn" class="game-button">Siguiente ❤️</button>
-                    </div>
+                <div class="level-container">
+                    <span class="label">Nivel:</span>
+                    <span id="current-level">1</span>
+                    <span>/2</span>
                 </div>
-                
-                <div class="game-controls">
-                    <div class="mobile-controls">
-                        <button class="control-btn" id="left-btn">←</button>
-                        <button class="control-btn" id="jump-btn">↑</button>
-                        <button class="control-btn" id="right-btn">→</button>
+                <div class="lives-container">
+                    <span class="label">Vidas:</span>
+                    <div id="lives">
+                        <span class="heart-life">💜</span>
+                        <span class="heart-life">💜</span>
+                        <span class="heart-life">💜</span>
                     </div>
                 </div>
             </div>
+            
+            <canvas id="game-canvas"></canvas>
+            
+            <!-- Modal entre niveles -->
+            <div id="level-complete-modal" class="level-modal">
+                <div class="level-modal-content">
+                    <div class="modal-characters">
+                        <span class="modal-dogday">🐶</span>
+                        <span class="modal-heart">❤️</span>
+                        <span class="modal-catnap">🐱</span>
+                    </div>
+                    <h2 class="modal-title">¡Lo Lograste!</h2>
+                    <p class="modal-message" id="level-message"></p>
+                    <button id="next-level-btn" class="game-button">Siguiente ❤️</button>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <div class="mobile-controls">
+                    <button class="control-btn" id="left-btn">←</button>
+                    <button class="control-btn" id="jump-btn">↑</button>
+                    <button class="control-btn" id="right-btn">→</button>
+                </div>
+            </div>
+        </div>
 
-            <div id="win-screen" class="screen">
-                <div class="message-container">
-                    <div class="catnap-celebration">
-                        <div class="catnap-character">🐱💜</div>
-                        <div class="dogday-character">🐶💛</div>
-                    </div>
-                    <h2 class="victory-title">¡Lo Lograste, Mi Amor! 💕</h2>
-                    <div class="love-message">
-                        <p class="message-text">
-                            Mi amor, mi vida, mi Onix, todo hermoso. Quiero pasar mis días junto a ti, 
-                            mi esposo que quiero cuidar por toda la eternidad. No tendré dinero, 
-                            pero eso no significa que no te pueda dar nada de mí...
-                        </p>
-                        <p class="message-signature">
-                            ✨ Ti amuuuuuuuuuuuuu ✨
-                        </p>
-                    </div>
-                    <div class="hearts-rain"></div>
-                    <button id="restart-button" class="game-button">
+        <!-- Pantalla de Game Over -->
+        <div id="gameover-screen" class="screen">
+            <div class="message-container">
+                <h2 class="gameover-title">¡Intenta de Nuevo! 💔</h2>
+                <p class="gameover-text">Las sombras te atraparon, pero el amor siempre gana</p>
+                <button id="retry-button" class="game-button">
+                    Reintentar 💪
+                </button>
+            </div>
+        </div>
+
+        <!-- Pantalla de Propuesta (Nivel 2 completado) -->
+        <div id="proposal-screen" class="screen">
+            <canvas id="proposal-canvas"></canvas>
+            <div id="proposal-message" class="proposal-message">
+                <div class="proposal-content">
+                    <h2 class="proposal-title">💍 ¿Te casarías conmigo? 💍</h2>
+                    <p class="proposal-text">
+                        Mi amor, mi vida, mi Onix, todo hermoso. Quiero pasar mis días junto a ti, 
+                        mi esposo que quiero cuidar por toda la eternidad. No tendré dinero, 
+                        pero eso no significa que no te pueda dar nada de mí...
+                    </p>
+                    <p class="proposal-signature">✨ Ti amuuuuuuuuuuuuu ✨</p>
+                    <p class="thank-you">Gracias por jugar, amor mío :3</p>
+                    <button id="restart-from-proposal" class="game-button">
                         Jugar de Nuevo 💝
-                    </button>
-                </div>
-            </div>
-
-            <div id="gameover-screen" class="screen">
-                <div class="message-container">
-                    <h2 class="gameover-title">¡Intenta de Nuevo! 💔</h2>
-                    <p class="gameover-text">Las sombras te atraparon, pero el amor siempre gana</p>
-                    <button id="retry-button" class="game-button">
-                        Reintentar 💪
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        // CONFIGURACIÓN DE LA FECHA (Año, Mes-1, Día, Hora, Minuto)
-        // Ejemplo: 14 de febrero de 2026 a las 6:00 PM (18:00)
-        // RECUERDA: Enero es 0, Febrero es 1, Marzo es 2...
-        const fechaObjetivo = new Date(2026, 1, 14, 18, 0, 0).getTime();
-
-        function checkTime() {
-            const ahora = new Date().getTime();
-            const distancia = fechaObjetivo - ahora;
-
-            const pantallaBloqueo = document.getElementById('bloqueo-temporal');
-            const contenidoRegalo = document.getElementById('contenido-protegido');
-            const reloj = document.getElementById('reloj-contador');
-
-            if (distancia <= 0) {
-                // EL TIEMPO SE CUMPLIÓ
-                pantallaBloqueo.style.display = 'none';
-                contenidoRegalo.style.display = 'block';
-                return; // Salir de la función
-            }
-
-            // CALCULAR TIEMPO RESTANTE
-            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-            reloj.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-
-            // Repetir cada segundo
-            setTimeout(checkTime, 1000);
-        }
-
-        // Iniciar la comprobación al cargar la página
-        checkTime();
-    </script>
 
     <script src="script.js"></script>
 </body>

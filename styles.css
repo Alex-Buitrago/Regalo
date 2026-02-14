@@ -7,17 +7,10 @@
 }
 
 :root {
-    --primary-color: #FF0000;
-    --secondary-color: #8B0000;
-    --accent-red: #DC143C;
-    --accent-dark: #1a1a1a;
-    --dark-shadow: #000000;
-    --light-bg: #f5f5f5;
-    --sky-gradient-1: #1a1a1a;
-    --sky-gradient-2: #2c2c2c;
-    --sky-gradient-3: #3d3d3d;
-    --white: #ffffff;
+    --primary-red: #FF0000;
+    --dark-red: #8B0000;
     --black: #000000;
+    --white: #FFFFFF;
     --purple: #9370DB;
 }
 
@@ -31,27 +24,6 @@ body {
     align-items: center;
     overflow: hidden;
     image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
-    pointer-events: none;
-    animation: floatingBubbles 15s ease-in-out infinite;
-}
-
-@keyframes floatingBubbles {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-20px) scale(1.05); }
 }
 
 .game-container {
@@ -63,13 +35,12 @@ body::before {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 30px;
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.3),
-        0 0 0 8px rgba(255, 255, 255, 0.5),
-        inset 0 2px 10px rgba(255, 255, 255, 0.8);
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 8px rgba(255, 0, 0, 0.3);
     overflow: hidden;
-    backdrop-filter: blur(10px);
 }
 
+/* Pantallas */
 .screen {
     position: absolute;
     width: 100%;
@@ -88,42 +59,17 @@ body::before {
 /* Pantalla de Inicio */
 #start-screen {
     background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #FF0000 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-#start-screen::before {
-    content: '❤️💜❤️💜❤️💜❤️💜❤️💜❤️💜';
-    position: absolute;
-    top: -50px;
-    left: 0;
-    right: 0;
-    font-size: 3rem;
-    text-align: center;
-    opacity: 0.3;
-    animation: slideHearts 10s linear infinite;
-}
-
-@keyframes slideHearts {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(100%); }
 }
 
 .title-container {
     text-align: center;
     z-index: 10;
-    animation: fadeInScale 1s ease-out;
+    animation: fadeIn 1s ease-out;
 }
 
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .game-title {
@@ -131,24 +77,18 @@ body::before {
     font-size: 4rem;
     color: #fff;
     text-shadow: 
-        4px 4px 0 var(--secondary-color),
-        8px 8px 20px rgba(0, 0, 0, 0.3);
+        4px 4px 0 var(--dark-red),
+        8px 8px 20px rgba(0, 0, 0, 0.5);
     margin-bottom: 10px;
-    animation: bounceTitle 2s ease-in-out infinite;
-}
-
-@keyframes bounceTitle {
-    0%, 100% { transform: translateY(0) rotate(-2deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
 }
 
 .heart {
     display: inline-block;
-    animation: pulseHeart 1.5s ease-in-out infinite;
+    animation: pulse 1.5s ease-in-out infinite;
     font-size: 4.5rem;
 }
 
-@keyframes pulseHeart {
+@keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); }
 }
@@ -156,7 +96,7 @@ body::before {
 .subtitle {
     font-size: 1.5rem;
     color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin-bottom: 30px;
     font-weight: 600;
 }
@@ -166,8 +106,8 @@ body::before {
     font-size: 1.5rem;
     font-weight: 700;
     padding: 18px 40px;
-    background: linear-gradient(135deg, #FF0000 0%, #8B0000 100%);
-    color: var(--white);
+    background: linear-gradient(135deg, #FF0000, #8B0000);
+    color: white;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -175,26 +115,6 @@ body::before {
         0 6px 0 #5c0000,
         0 10px 20px rgba(0, 0, 0, 0.5);
     transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.game-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.5s, height 0.5s;
-}
-
-.game-button:hover::before {
-    width: 300px;
-    height: 300px;
 }
 
 .game-button:hover {
@@ -213,16 +133,16 @@ body::before {
 
 .instructions {
     margin-top: 40px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.7);
     padding: 25px 40px;
     border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 3px solid #FF0000;
 }
 
 .instructions p {
     font-size: 1.1rem;
     margin: 8px 0;
-    color: var(--dark-shadow);
+    color: white;
     font-weight: 600;
 }
 
@@ -240,10 +160,8 @@ body::before {
     display: flex;
     justify-content: space-between;
     padding: 20px 30px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 100;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .score-container,
@@ -254,30 +172,30 @@ body::before {
     gap: 10px;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--dark-shadow);
-}
-
-#current-level {
-    color: var(--accent-blue);
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
-    font-size: 2rem;
+    color: white;
 }
 
 .label {
-    color: var(--secondary-color);
+    color: #FF0000;
 }
 
 #score {
-    color: var(--accent-red);
-    text-shadow: 2px 2px 0 var(--secondary-color);
+    color: #FFD700;
+    text-shadow: 2px 2px 0 #000;
+    font-size: 2rem;
+}
+
+#current-level {
+    color: #FF0000;
+    text-shadow: 2px 2px 0 #000;
     font-size: 2rem;
 }
 
 .pizza-icon {
-    animation: spinPizza 2s linear infinite;
+    animation: spin 2s linear infinite;
 }
 
-@keyframes spinPizza {
+@keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
@@ -289,10 +207,10 @@ body::before {
 
 .heart-life {
     font-size: 1.8rem;
-    animation: heartBeat 1.5s ease-in-out infinite;
+    animation: heartbeat 1.5s ease-in-out infinite;
 }
 
-@keyframes heartBeat {
+@keyframes heartbeat {
     0%, 100% { transform: scale(1); }
     10%, 30% { transform: scale(1.1); }
     20% { transform: scale(0.95); }
@@ -302,9 +220,10 @@ body::before {
     width: 100%;
     height: 100%;
     display: block;
-    background: linear-gradient(180deg, #87ceeb 0%, #e0f6ff 100%);
+    image-rendering: pixelated;
 }
 
+/* Controles móviles */
 .game-controls {
     position: absolute;
     bottom: 20px;
@@ -322,158 +241,22 @@ body::before {
     width: 70px;
     height: 70px;
     font-size: 2rem;
-    background: rgba(255, 255, 255, 0.9);
-    border: 4px solid var(--primary-color);
+    background: rgba(255, 0, 0, 0.8);
+    border: 4px solid #000;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 6px 0 var(--secondary-color), 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 0 #5c0000;
     transition: all 0.1s ease;
     font-weight: 700;
-    color: var(--dark-shadow);
+    color: white;
 }
 
 .control-btn:active {
     transform: translateY(4px);
-    box-shadow: 0 2px 0 var(--secondary-color), 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 0 #5c0000;
 }
 
-/* Pantalla de Victoria */
-#win-screen {
-    background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #FF0000 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-.message-container {
-    text-align: center;
-    z-index: 10;
-    max-width: 800px;
-    animation: fadeInScale 1.5s ease-out;
-}
-
-.catnap-celebration {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 30px;
-    animation: celebrationBounce 1s ease-in-out infinite;
-}
-
-@keyframes celebrationBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-.catnap-character,
-.dogday-character {
-    font-size: 6rem;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-}
-
-.victory-title {
-    font-family: 'Patrick Hand', cursive;
-    font-size: 3.5rem;
-    color: #fff;
-    text-shadow: 
-        4px 4px 0 var(--secondary-color),
-        8px 8px 20px rgba(0, 0, 0, 0.3);
-    margin-bottom: 30px;
-}
-
-.love-message {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 25px;
-    margin: 30px 0;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    border: 5px solid var(--primary-color);
-}
-
-.message-text {
-    font-size: 1.4rem;
-    line-height: 1.8;
-    color: var(--dark-shadow);
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.message-signature {
-    font-family: 'Patrick Hand', cursive;
-    font-size: 2rem;
-    color: var(--primary-color);
-    font-weight: 700;
-    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
-}
-
-.hearts-rain {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.hearts-rain::before,
-.hearts-rain::after {
-    content: '❤️ 💜 ❤️ 💜 ❤️ 💜';
-    position: absolute;
-    font-size: 2rem;
-    white-space: nowrap;
-    animation: heartsRainFall 8s linear infinite;
-}
-
-.hearts-rain::before {
-    top: -50px;
-    left: 0;
-    animation-delay: 0s;
-}
-
-.hearts-rain::after {
-    top: -50px;
-    left: 50%;
-    animation-delay: 4s;
-}
-
-@keyframes heartsRainFall {
-    to {
-        transform: translateY(calc(100vh + 100px));
-    }
-}
-
-/* Pantalla Game Over */
-#gameover-screen {
-    background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
-}
-
-.gameover-title {
-    font-family: 'Patrick Hand', cursive;
-    font-size: 3rem;
-    color: #fff;
-    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
-}
-
-.gameover-text {
-    font-size: 1.3rem;
-    color: #dfe6e9;
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-#game-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    background: linear-gradient(180deg, #87ceeb 0%, #e0f6ff 100%);
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-}
-
-/* Level Complete Modal */
+/* Modal de nivel completado */
 .level-modal {
     position: absolute;
     top: 0;
@@ -485,55 +268,37 @@ body::before {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.3s ease;
 }
 
 .level-modal.active {
     display: flex;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
 .level-modal-content {
-    background: linear-gradient(135deg, #1a1a1a 0%, #8B0000 100%);
+    background: linear-gradient(135deg, #000000 0%, #8B0000 100%);
     padding: 50px;
     border-radius: 30px;
     max-width: 600px;
     width: 90%;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(255, 0, 0, 0.5);
+    box-shadow: 0 20px 60px rgba(255, 0, 0, 0.8);
     border: 5px solid #FF0000;
     animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 .modal-characters {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     margin-bottom: 30px;
     font-size: 4rem;
-}
-
-.modal-dogday,
-.modal-catnap {
     animation: bounce 1s ease-in-out infinite;
-}
-
-.modal-dogday {
-    animation-delay: 0s;
-}
-
-.modal-catnap {
-    animation-delay: 0.5s;
-}
-
-.modal-heart {
-    animation: pulseHeart 1.5s ease-in-out infinite;
-    font-size: 3rem;
 }
 
 @keyframes bounce {
@@ -544,13 +309,13 @@ body::before {
 .modal-title {
     font-family: 'Patrick Hand', cursive;
     font-size: 3rem;
-    color: #FF0000;
-    text-shadow: 3px 3px 0 #000, -1px -1px 0 #fff;
+    color: #FFD700;
+    text-shadow: 3px 3px 0 #FF0000;
     margin-bottom: 25px;
 }
 
 .modal-message {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #fff;
     background: rgba(0, 0, 0, 0.5);
     padding: 25px;
@@ -559,6 +324,108 @@ body::before {
     font-weight: 600;
     line-height: 1.8;
     border: 2px solid #FF0000;
+}
+
+/* Pantalla Game Over */
+#gameover-screen {
+    background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+}
+
+.message-container {
+    text-align: center;
+}
+
+.gameover-title {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 3rem;
+    color: #FF0000;
+    text-shadow: 4px 4px 0 #000;
+    margin-bottom: 20px;
+}
+
+.gameover-text {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Pantalla de Propuesta */
+#proposal-screen {
+    position: relative;
+    background: #000;
+}
+
+#proposal-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.proposal-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10;
+}
+
+.proposal-message.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.proposal-content {
+    background: linear-gradient(135deg, #000000 0%, #8B0000 100%);
+    padding: 50px;
+    border-radius: 30px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(255, 0, 0, 0.8);
+    border: 5px solid #FF0000;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 20px 60px rgba(255, 0, 0, 0.8); }
+    50% { box-shadow: 0 20px 80px rgba(255, 0, 0, 1), 0 0 30px rgba(255, 0, 0, 0.5); }
+}
+
+.proposal-title {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 3rem;
+    color: #FFD700;
+    text-shadow: 3px 3px 0 #FF0000, -1px -1px 0 #fff;
+    margin-bottom: 30px;
+}
+
+.proposal-text {
+    font-size: 1.4rem;
+    color: #fff;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.proposal-signature {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2.2rem;
+    color: #FF0000;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+.thank-you {
+    font-size: 1.2rem;
+    color: #FFD700;
+    font-style: italic;
+    margin-bottom: 30px;
+    font-weight: 600;
 }
 
 /* Responsive */
@@ -584,17 +451,12 @@ body::before {
         font-size: 0.9rem;
     }
     
-    .victory-title {
-        font-size: 2.5rem;
+    .modal-title, .proposal-title {
+        font-size: 2rem;
     }
     
-    .message-text {
+    .modal-message, .proposal-text {
         font-size: 1.1rem;
-    }
-    
-    .catnap-character,
-    .dogday-character {
-        font-size: 4rem;
     }
 }
 
@@ -603,10 +465,6 @@ body::before {
         width: 95%;
         height: 95vh;
         border-radius: 20px;
-    }
-    
-    .game-title {
-        font-size: 2rem;
     }
     
     .control-btn {
